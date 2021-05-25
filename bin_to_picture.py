@@ -13,23 +13,22 @@ ROOT_PATH = "/home/datasets/ZJUT/"
 FRAME_TIME = 8333
 
 celex5 = PyCeleX5.PyCeleX5(debug=False)
-celex5.setSensorFixedMode(PyCeleX5.CeleX5Mode.Event_Off_Pixel_Timestamp_Mode)
 celex5.setRotateType(2)
 celex5.setEventFrameTime(FRAME_TIME)
 
-files = []
+bin_files = []
 for ap in os.listdir(ROOT_PATH):
     ap_path = os.path.join(ROOT_PATH, ap)
     for s in os.listdir(ap_path):
         path = os.path.join(ap_path, s, "event")
         files = os.listdir(path)
         if len(files) == 1 and files[0].endswith(".bin"):
-            files.append(os.path.join(path, files[0]))
+            bin_files.append(os.path.join(path, files[0]))
 
 # TODO 多线程解析
 
 celex5.startRippingBinFile()
-for file in files:
+for file in bin_files:
     path = os.path.dirname(file) + os.sep
     celex5.setRippingPath(path)
     celex5.openBinFile(file)
@@ -44,7 +43,7 @@ for file in files:
             count = new_count
         else:
             break
-    print("ripping {} done, generate {} images".format(file, count))
+    print("ripping {} done, generate {} images".format(file, count - 1))
     time.sleep(1)
 
 celex5.stopRippingBinFile()
