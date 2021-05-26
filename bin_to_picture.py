@@ -20,22 +20,25 @@ bin_files = []
 for ap in os.listdir(ROOT_PATH):
     ap_path = os.path.join(ROOT_PATH, ap)
     for s in os.listdir(ap_path):
-        path = os.path.join(ap_path, s, "event")
-        files = os.listdir(path)
-        if len(files) == 1 and files[0].endswith(".bin"):
-            bin_files.append(os.path.join(path, files[0]))
+        event = os.path.join(ap_path, s, "event")
+        images = os.path.join(ap_path, s, "image_event_binary")
+        if not os.path.exists(event) or len(os.listdir(event)) != 1 or not os.listdir(event)[0].endswith(".bin"):
+            continue
+        if os.path.exists(images) and len(os.listdir(images)) > 0:
+            continue
+        bin_files.append(os.path.join(event, os.listdir(event)[0]))
 
 # TODO 多线程解析
 
 celex5.startRippingBinFile()
 for file in bin_files:
-    path = os.path.dirname(file) + os.sep
+    path = os.path.join(os.path.dirname(os.path.dirname(file)), "image_event_binary") + os.sep
     celex5.setRippingPath(path)
     celex5.openBinFile(file)
     while not celex5.readBinFileData():
         pass
     count = len(os.listdir(path))
-    # 保证=所有图片都已保存完
+    # 保证等待所有图片都已保存完
     while True:
         time.sleep(1)
         new_count = len(os.listdir(path))
