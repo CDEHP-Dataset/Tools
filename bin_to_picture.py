@@ -9,7 +9,7 @@ import time
 
 import PyCeleX5
 
-ROOT_PATH = "/home/datasets/ZJUT/"
+ROOT_PATH = "/home/datasets/ZJUT/0527-1/"
 FRAME_TIME = 8333
 
 celex5 = PyCeleX5.PyCeleX5(debug=False)
@@ -24,7 +24,9 @@ for ap in os.listdir(ROOT_PATH):
         images = os.path.join(ap_path, s, "image_event_binary")
         if not os.path.exists(event) or len(os.listdir(event)) != 1 or not os.listdir(event)[0].endswith(".bin"):
             continue
-        if os.path.exists(images) and len(os.listdir(images)) > 0:
+        if not os.path.exists(images):
+            os.mkdir(images)
+        if len(os.listdir(images)) > 0:
             continue
         bin_files.append(os.path.join(event, os.listdir(event)[0]))
 
