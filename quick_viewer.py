@@ -9,11 +9,11 @@ import threading
 
 import cv2
 
-ROOT_PATH = "Y:\\ZJUT\\0531"
+ROOT_PATH = r"Y:\ZJUT\0531"
 
 
-def show_images(images_path: str, image_type: str):
-    images_path = os.path.join(images_path, image_type)
+def show_images(root_path: str, image_type: str):
+    images_path = os.path.join(root_path, image_type)
     for file in os.listdir(images_path):
         file_path = os.path.join(images_path, file)
         image = cv2.imread(file_path)
@@ -38,8 +38,9 @@ if __name__ == "__main__":
         ap_path = os.path.join(ROOT_PATH, ap)
         for s in os.listdir(ap_path):
             s_path = os.path.join(ap_path, s)
-            if os.path.exists(os.path.join(s_path, "color")) and os.path.exists(
-                    os.path.join(s_path, "image_event_binary")):
+            color_path = os.path.join(s_path, "color")
+            event_path = os.path.join(s_path, "image_event_binary")
+            if os.path.exists(color_path) and os.path.exists(event_path):
                 directories.append(s_path)
     directories.sort()
     for path in directories:
