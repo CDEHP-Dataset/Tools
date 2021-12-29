@@ -9,7 +9,9 @@ import os
 import cv2
 import numpy
 
-ROOT_PATH = r"Y:\ZJUT\Verified\A0025P0017\S00"
+ROOT_PATH = r"Y:\ZJUT\temp\A0014P0019\S00"
+
+FRAME_WAIT_TIME = 10
 
 RED = (0, 0, 255)
 GREEN = (0, 255, 0)
@@ -19,17 +21,17 @@ SKELETON = [[0, 1], [1, 3], [3, 5], [1, 7], [1, 2], [7, 9], [9, 11],
 
 
 def show_skeleton(root_path: str):
-    color_label_path = os.path.join(ROOT_PATH, "label_color_fill")
-    event_label_path = os.path.join(ROOT_PATH, "label_event_fill")
+    print("displaying " + root_path)
+    color_label_path = os.path.join(root_path, "label_color_fill")
+    event_label_path = os.path.join(root_path, "label_event_fill")
     if not os.path.exists(color_label_path):
-        print("color label not exists: " + color_label_path)
-        return
+        raise ("color label not exists: " + color_label_path)
     if not os.path.exists(event_label_path):
-        print("event label not exists: " + event_label_path)
+        raise ("event label not exists: " + event_label_path)
     colors = os.listdir(color_label_path)
     events = os.listdir(event_label_path)
     if len(colors) != len(events):
-        print("file count not same: color {}, event {}".format(len(colors), len(events)))
+        raise "file count not same: color {}, event {}".format(len(colors), len(events))
 
     colors.sort()
     events.sort()
@@ -37,16 +39,18 @@ def show_skeleton(root_path: str):
         color = cv2.imread(os.path.join(root_path, "color", colors[i][0: -4] + ".png"))
         color_label = load_label(os.path.join(color_label_path, colors[i]), "color")
         color = add_skeleton(color, color_label)
-        color = cv2.resize(color, (960, 540))
+        color = cv2.resize(color, (800, 450))
         cv2.imshow("color", color)
-        cv2.waitKey(1)
+        cv2.moveWindow("color", 100, 100)
+        cv2.waitKey(FRAME_WAIT_TIME)
 
         event = cv2.imread(os.path.join(root_path, "image_event_binary", events[i][0: -4] + ".png"))
         event_label = load_label(os.path.join(event_label_path, events[i]), "event")
         event = add_skeleton(event, event_label)
-        event = cv2.resize(event, (960, 600))
+        event = cv2.resize(event, (800, 500))
         cv2.imshow("event", event)
-        cv2.waitKey(1)
+        cv2.moveWindow("event", 1000, 100)
+        cv2.waitKey(FRAME_WAIT_TIME)
 
 
 def load_label(label_path: str, label_type: str):
@@ -75,5 +79,25 @@ def add_skeleton(image, key_points):
     return image
 
 
+def show_directory(root: str, person: int):
+    for i in range(1, 26):
+        directory = "A{:04}P{:04}".format(i)
+        path = os.path.join(root, directory)
+        path = os.path.join(path, "S00")
+        while True:
+            show_skeleton(path)
+            command = input()
+            if command == 'r':
+                continue
+            else:
+                break
+
+
 if __name__ == "__main__":
-    show_skeleton(ROOT_PATH)
+    while True:
+        show_skeleton(ROOT_PATH)
+        command = input()
+        if command == 'r':
+            continue
+        else:
+            break
