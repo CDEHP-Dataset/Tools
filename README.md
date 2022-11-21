@@ -36,7 +36,7 @@ ldconfig /usr/local/lib
 
 1. 使用`calibration/save_intrinsics.py`程序获取深度相机内参
 2. 使用`CelePixel/Calibration-Tools`程序在线拍摄标定事件相机内参
-3. `MATLAB`打印棋盘`open checkerboardPattern.pdf`，打印时选择实际大小，方格长度应为`23mm`
+3. `MATLAB`打印棋盘`open checkerboardPattern.pdf`，打印时选择实际大小，方格长度应为`23mm`或`470mm`
 4. 同时拍摄深度相机、事件相机
 5. 打开两个`Camera Calibrator`程序，畸变参数`Radial Distortion`设为三参数`3 Coefficients`
 6. 分别标定深度相机、事件相机，去除无法识别和部分识别的图片，保持两者一致
