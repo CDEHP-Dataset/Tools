@@ -51,7 +51,7 @@ if __name__ == "__main__":
     celex5.openSensor()
     celex5.isSensorReady()
     celex5.setSensorFixedMode(PyCeleX5.CeleX5Mode.Full_Picture_Mode)
-    celex5.setFpnFile("fpn_lab.txt")
+    celex5.setFpnFile("FPN_lab.txt")
     celex5.setRotateType(2)
 
     config = rs.config()
