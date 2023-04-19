@@ -36,12 +36,12 @@ def get_d435i():
 def show_img():
     while True:
         event_show = get_celex5()
-        event_show = cv2.resize(event_show, (480, 300))
+        event_show = cv2.resize(event_show, (800, 500))
         cv2.imshow("event", event_show)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         color_show, _ = get_d435i()
-        color_show = cv2.resize(color_show, (480, 270))
+        color_show = cv2.resize(color_show, (800, 450))
         cv2.imshow("color", color_show)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -69,7 +69,10 @@ if __name__ == "__main__":
     i = 1
     while i < 500:
         name = input()
-        if name != "":
+        if name == "q":
+            working = False
+            break
+        elif name != "":
             i = int(name)
         event = get_celex5()
         color, depth = get_d435i()
