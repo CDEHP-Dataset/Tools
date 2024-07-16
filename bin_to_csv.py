@@ -3,6 +3,7 @@
 """
 bin_to_picture.py
 将Bin文件导出Event数据
+Export the event data from Bin files
 """
 import os
 import time

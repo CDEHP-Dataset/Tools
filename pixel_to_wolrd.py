@@ -2,7 +2,8 @@
 # coding=utf-8
 """
 pixel_to_wolrd.py
-给定像素坐标计算已相机为原点的世界坐标
+给定像素坐标计算以相机为原点的世界坐标
+Calculate the camera world coordinates of a pixel
 """
 
 import json

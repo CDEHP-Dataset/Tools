@@ -3,6 +3,7 @@
 """
 quick_viewer.py
 快速可视化拍摄的图片
+For quick visualization
 """
 import os
 import threading

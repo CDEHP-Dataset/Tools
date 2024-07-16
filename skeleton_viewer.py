@@ -2,7 +2,7 @@
 # coding=utf-8
 """
 skeleton_viewer.py
-快速可视化图片及骨架
+visualize the skeletons and images
 """
 import os
 

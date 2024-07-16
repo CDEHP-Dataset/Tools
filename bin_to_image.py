@@ -3,6 +3,7 @@
 """
 bin_to_picture.py
 将Bin文件转录为图片序列
+Convert a Bin file into event frames
 """
 import os
 import time
@@ -30,7 +31,8 @@ for ap in os.listdir(ROOT_PATH):
             continue
         bin_files.append(os.path.join(event, os.listdir(event)[0]))
 
-# TODO 多线程解析
+# TODO 多线程解析 
+# TODO Multithread parsing
 
 celex5.startRippingBinFile()
 for file in bin_files:
@@ -41,6 +43,7 @@ for file in bin_files:
         pass
     count = len(os.listdir(path))
     # 保证等待所有图片都已保存完
+    # Make sure to wait until all event frames are stored
     while True:
         time.sleep(1)
         new_count = len(os.listdir(path))

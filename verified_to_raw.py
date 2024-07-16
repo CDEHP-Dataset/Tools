@@ -3,6 +3,7 @@
 """
 verified_to_raw.py
 已验证标签转为原始标签程序
+convert verified labels to the raw labels
 """
 import os
 import shutil

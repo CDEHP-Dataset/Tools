@@ -3,6 +3,7 @@
 """
 verified_dataset.py
 验证数据集是否完整程序
+veriry the dataset integrity 
 """
 
 import os
