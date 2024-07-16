@@ -3,6 +3,7 @@
 """
 photograph.py
 双目相机棋盘拍照程序
+The chessboard shooting program for the stereo cameras
 """
 
 import threading

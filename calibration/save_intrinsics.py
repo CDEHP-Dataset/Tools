@@ -3,6 +3,7 @@
 """
 save_intrinsics.py
 保存RealSense内参
+save the intrinsics of the depth camera (Realsense)
 """
 
 import json

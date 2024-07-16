@@ -3,6 +3,7 @@
 """
 resizer.py
 将指定目录图片压缩至指定分辨率
+resize all the images in a specified directory
 """
 
 import os

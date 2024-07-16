@@ -3,6 +3,7 @@
 """
 realsense_test.py
 深度相机测试程序
+test programming of the depth camera
 """
 import threading
 
