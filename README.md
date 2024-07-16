@@ -1,4 +1,4 @@
-# Perry25数据集
+# CDEHP Dataset
 
 * Calibration
 * Action Capture
@@ -35,18 +35,28 @@ ldconfig /usr/local/lib
 ## Calibration
 
 1. Use `calibration/save_intrinsics.py` to get the camera intrinsic parameters
+   
    使用`calibration/save_intrinsics.py`程序获取深度相机内参 
 2. Use `CelePixel/Calibration-Tools` to online calibrate the camera to compute the camera intrinsic parameters.
+   
    使用`CelePixel/Calibration-Tools`程序在线拍摄标定事件相机内参
 3. In `MATLAB`, print `open checkerboardPattern.pdf` with the actual size，the length of each checker should be `23mm` or `470mm`.
-   `MATLAB`打印棋盘`open checkerboardPattern.pdf`，打印时选择实际大小，方格长度应为23mm或470mm
+   
+   `MATLAB`打印棋盘`open checkerboardPattern.pdf`,打印时选择实际大小，方格长度应为23mm或470mm
 4. Use the depth and event cameras to capture the calibration board simultaneously.
+   
    同时拍摄深度相机、事件相机
 5. Open two 'Camera Calibrator' programs, and set the option of `Radial Distortion`to be `3 Coefficients`
+   
    打开两个`Camera Calibrator`程序，畸变参数`Radial Distortion`设为三参数`3 Coefficients`
-6. 分别标定深度相机、事件相机，去除无法识别和部分识别的图片，保持两者一致
-   Calibrate the depth camera and event camera respectively, and remove those unrecognized images.
-7. 导出坐标点
-   Output the coordinates
-8. 计算
-   Computation
+6. Calibrate the depth camera and event camera respectively, and remove those unrecognized images.
+   
+   分别标定深度相机、事件相机，去除无法识别和部分识别的图片，保持两者一致
+   
+7. Output the coordinates
+   
+   导出坐标点 
+8. Computation
+   
+   计算
+   
